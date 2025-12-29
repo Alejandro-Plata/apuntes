@@ -318,7 +318,7 @@ const KNOWLEDGE_BASE: Concept[] = [
     },
     {
       "type": "text",
-      "value": "¿Listo? Analicemos cómo lo haría un profesional de React hoy en día. Aquí tienes la **Solución Comentada**:"
+      "value": "Aquí tienes la **solución comentada**:"
     },
     {
       "type": "code",
@@ -347,8 +347,228 @@ const KNOWLEDGE_BASE: Concept[] = [
   ]
 },
 {
+  "id": "fundamentos-js-http-api-fetch",
+  "title": "Protocolo HTTP, APIs y Fetch: La Comunicación de Datos",
+  "shortDescription": "Dominio del intercambio de datos en la web: verbos HTTP, códigos de estado y consumo robusto de APIs mediante Fetch.",
+  "keyConcept": "La **Fetch API** es el estándar moderno para peticiones asíncronas, pero requiere un manejo manual de errores HTTP ya que **no rechaza la promesa** en códigos 4xx o 5xx.",
+  "language": "React",
+  "conceptType": "apuntes",
+  "tags": [
+    "Fundamentos",
+    "Backend",
+    "Arquitectura"
+  ],
+  "difficulty": "Intermedio",
+  "content": [
+    {
+      "type": "text",
+      "value": "Para que una aplicación React sea útil, necesita datos. Estos datos no viven en el navegador del usuario, sino en servidores remotos. Para acceder a ellos, utilizamos el protocolo que mueve la web: **HTTP** (Hypertext Transfer Protocol)."
+    },
+    {
+      "type": "text",
+      "value": "El modelo mental es una conversación: el Cliente (tu navegador/app React) hace una **Petición** (Request) y el Servidor responde con una **Respuesta** (Response). Esta comunicación no es libre; sigue reglas estrictas."
+    },
+    {
+      "type": "text",
+      "value": ""
+    },
+    {
+      "type": "text",
+      "value": "Primero, debemos entender los **Métodos HTTP** (o verbos). Indican la *intención* de la operación sobre un recurso. En una arquitectura REST, los más comunes son:"
+    },
+    {
+      "type": "code",
+      "value": "// GET:    Pedir datos (Lectura). No modifica nada en el servidor.\n// POST:   Enviar datos nuevos (Creación). Ej: Registro de usuario.\n// PUT:    Reemplazar un recurso existente completo (Edición total).\n// PATCH:  Modificar parcialmente un recurso (Edición parcial).\n// DELETE: Eliminar un recurso."
+    },
+    {
+      "type": "text",
+      "value": "Cuando el servidor responde, incluye un **Código de Estado** (Status Code). Es un número de tres cifras que nos dice 'cómo fue todo'. Memorizar los grupos principales es obligatorio:"
+    },
+    {
+      "type": "text",
+      "value": "* **2xx (Éxito):** Todo bien. (200 OK, 201 Created).\n* **3xx (Redirección):** El recurso se ha movido.\n* **4xx (Error del Cliente):** Tú (el frontend) hiciste algo mal. (400 Bad Request, 401 Unauthorized, 404 Not Found).\n* **5xx (Error del Servidor):** El backend falló. (500 Internal Server Error)."
+    },
+    {
+      "type": "text",
+      "value": "Una **API** (Application Programming Interface) es el contrato que define cómo tu frontend puede hablar con el backend. Hoy en día, el formato estándar de intercambio de datos es **JSON** (JavaScript Object Notation), que ya conocemos."
+    },
+    {
+      "type": "text",
+      "value": "Para consumir estas APIs desde JavaScript, utilizamos la **Fetch API**. Es una función nativa del navegador, basada en Promesas, que reemplazó al antiguo `XMLHttpRequest`."
+    },
+    {
+      "type": "text",
+      "value": "Una peculiaridad crítica de `fetch` es que es un proceso de **dos pasos**. La función `fetch` devuelve una promesa que se resuelve en cuanto llegan las cabeceras (headers) de la respuesta, pero el cuerpo (el JSON real) aún puede estar viajando por la red."
+    },
+    {
+      "type": "code",
+      "value": "const obtenerUsuario = async (id) => {\n  // Paso 1: Esperar la conexión y las cabeceras\n  const response = await fetch(`https://api.ejemplo.com/users/${id}`);\n  \n  // Paso 2: Leer el stream del cuerpo y parsearlo a JSON\n  const data = await response.json();\n  \n  console.log(data);\n};"
+    },
+    {
+      "type": "text",
+      "value": "Por defecto, `fetch` realiza una petición **GET**. Si queremos hacer un POST (enviar datos), debemos pasar un segundo argumento: un objeto de configuración."
+    },
+    {
+      "type": "text",
+      "value": "Aquí es vital configurar dos cosas: el `method` y, muy importante, los **Headers**. El servidor necesita saber qué tipo de datos le estás enviando. El header `Content-Type: application/json` es la norma estándar."
+    },
+    {
+      "type": "code",
+      "value": "const crearProducto = async (nuevoProducto) => {\n  const response = await fetch('https://api.ejemplo.com/productos', {\n    method: 'POST',\n    headers: {\n      'Content-Type': 'application/json' // Avisamos que enviamos JSON\n    },\n    // El cuerpo debe ser un STRING, no un objeto JS puro\n    body: JSON.stringify(nuevoProducto)\n  });\n  \n  return await response.json();\n};"
+    },
+    {
+      "type": "text",
+      "value": "Atención al uso de `JSON.stringify()` en el `body`. No puedes enviar objetos de JavaScript puros por la red; debes serializarlos a texto plano."
+    },
+    {
+      "type": "text",
+      "value": "Ahora abordemos el punto donde fallan muchos desarrolladores: el **Manejo de Errores**. Una promesa de `fetch` **NO** se rechaza (no entra en el `catch`) si el servidor devuelve un error 404 o 500."
+    },
+    {
+      "type": "text",
+      "value": "Para `fetch`, recibir un 404 es una petición exitosa: se conectó con el servidor y el servidor respondió 'No lo encuentro'. La promesa solo falla si hay un error de red (sin internet, DNS fallido)."
+    },
+    {
+      "type": "text",
+      "value": "Por lo tanto, debemos verificar manualmente la propiedad booleana `response.ok` antes de intentar parsear el JSON."
+    },
+    {
+      "type": "code",
+      "value": "const obtenerDatosSeguro = async () => {\n  try {\n    const response = await fetch('/api/datos');\n    \n    // Verificación manual de estado HTTP (200-299)\n    if (!response.ok) {\n      throw new Error(`Error HTTP: ${response.status}`);\n    }\n\n    const data = await response.json();\n    return data;\n\n  } catch (error) {\n    // Aquí caen tanto errores de red como los que lanzamos manualmente arriba\n    console.error('Fallo en la petición:', error.message);\n  }\n};"
+    },
+    {
+      "type": "text",
+      "value": "Además del cuerpo, a veces necesitamos enviar información en la propia URL, conocida como **Query Parameters** (ej: `?busqueda=react&orden=asc`)."
+    },
+    {
+      "type": "text",
+      "value": "Aunque puedes concatenar strings manualmente, la forma profesional es usar la clase `URLSearchParams`, que se encarga de codificar correctamente los espacios y caracteres especiales."
+    },
+    {
+      "type": "code",
+      "value": "const buscar = async (termino, pagina) => {\n  const params = new URLSearchParams({\n    q: termino,\n    page: pagina,\n    lang: 'es'\n  });\n\n  // Resultado: /api/buscar?q=react&page=1&lang=es\n  const response = await fetch(`/api/buscar?${params.toString()}`);\n  const data = await response.json();\n  return data;\n};"
+    },
+    {
+      "type": "text",
+      "value": "Finalmente, hablemos de la **Autenticación**. La mayoría de APIs privadas requieren que te identifiques. Esto no suele hacerse en la URL, sino mediante un header específico, usualmente `Authorization` con un token Bearer."
+    },
+    {
+      "type": "code",
+      "value": "const headers = {\n  'Content-Type': 'application/json',\n  'Authorization': `Bearer ${tokenDeUsuario}` // Token JWT usualmente\n};\n\nfetch('/api/perfil-privado', { headers });"
+    },
+    {
+      "type": "text",
+      "value": "Dominar `fetch` nativo te da el control total y te ayuda a entender qué ocurre \"bajo el capó\", incluso si más adelante decides usar librerías como Axios o React Query."
+    }
+  ]
+},
+{
+  "id": "ejercicio-fetch-pokeapi",
+  "title": "Ejercicio Práctico: Consumiendo la PokéAPI con Fetch y Manejo de Errores",
+  "shortDescription": "Construye un visor de Pokémon en React que gestione peticiones asíncronas, estados de carga y, crucialmente, errores HTTP 404 manuales.",
+  "keyConcept": "Al consumir APIs externas con **fetch**, es imperativo implementar una gestión de estado tripular (**loading**, **error**, **data**) y verificar manualmente `response.ok` para detectar errores HTTP como el 404.",
+  "language": "React",
+  "conceptType": "practica",
+  "tags": [
+    "Fundamentos",
+    "Backend",
+    "Frontend"
+  ],
+  "difficulty": "Intermedio",
+  "content": [
+    {
+      "type": "text",
+      "value": "Vamos a poner a prueba tus conocimientos sobre el protocolo HTTP y la API `fetch` en un entorno de React real. Usaremos la famosa **PokéAPI**, una API pública, gratuita y excelente para practicar porque simula muy bien el comportamiento de un backend RESTful real."
+    },
+    {
+      "type": "text",
+      "value": "Tu objetivo es crear un componente llamado `VisorPokemon`. Este componente recibirá el nombre de un Pokémon como prop y deberá buscar su información en la API."
+    },
+    {
+      "type": "text",
+      "value": "El endpoint que utilizaremos es: `pokeapi.co/api/v2/pokemon/{nombre}`. Por ejemplo, para buscar a Pikachu, haríamos una petición GET a `pokeapi.co/api/v2/pokemon/pikachu`."
+    },
+    {
+      "type": "text",
+      "value": "Este ejercicio es fundamental porque te obligará a lidiar con la asincronía y los tres estados posibles de cualquier interfaz de datos: cargando, éxito y error."
+    },
+    {
+      "type": "text",
+      "value": "### Requisitos del Desafío"
+    },
+    {
+      "type": "text",
+      "value": "1. **Gestión de Estado Completa**: Tu componente debe manejar tres piezas de estado usando `useState`: `cargando` (booleano, true al inicio), `error` (string o null) y `pokemon` (objeto o null para los datos)."
+    },
+    {
+      "type": "text",
+      "value": "2. **Efecto de Búsqueda**: Utiliza `useEffect` para disparar la petición fetch cada vez que cambie la prop `nombre`. Recuerda que el nombre debe pasarse a minúsculas para que la API lo acepte."
+    },
+    {
+      "type": "text",
+      "value": "3. **Manejo Robusto de Errores HTTP**: Este es el punto crítico. Si buscas un Pokémon que no existe (ej: \"agumon\"), la PokéAPI devolverá un estado HTTP **404 Not Found**."
+    },
+    {
+      "type": "text",
+      "value": "Recuerda que `fetch` **NO** lanza una excepción en este caso. Debes verificar manualmente `response.ok` y lanzar tu propio error si es `false`. Si no lo haces, tu código intentará hacer `.json()` sobre una respuesta de error y fallará silenciosamente o de forma extraña."
+    },
+    {
+      "type": "text",
+      "value": "4. **Renderizado Condicional**: La interfaz debe mostrar algo distinto según el estado actual: un mensaje de \"Cargando...\", un mensaje de error en rojo si falló, o la foto y el nombre del Pokémon si todo fue bien."
+    },
+    {
+      "type": "text",
+      "value": "Aquí tienes el esqueleto inicial para comenzar:"
+    },
+    {
+      "type": "code",
+      "value": "import { useState, useEffect } from 'react';\n\nconst VisorPokemon = ({ nombreBusqueda }) => {\n  // 1. Define tus estados aquí (cargando, error, pokemon)\n  // const [...] = useState(...);\n\n  useEffect(() => {\n    if (!nombreBusqueda) return;\n\n    // Define tu función asíncrona aquí dentro\n    const obtenerPokemon = async () => {\n      // Reinicia estados antes de empezar\n      // Inicia el try/catch\n      // Haz el fetch\n      // CRÍTICO: Verifica response.ok\n      // Parsea el JSON\n      // Guarda los datos\n    };\n\n    obtenerPokemon();\n    \n  }, [nombreBusqueda]); // Se ejecuta al cambiar el nombre\n\n  // 2. Renderizado condicional basado en los estados\n  // if (cargando) return ...\n  // if (error) return ...\n\n  return (\n    <div className=\"tarjeta-pokemon\">\n      {/* Muestra los datos del pokemon aquí */}\n      {/* Ej: pokemon.sprites.front_default y pokemon.name */}\n    </div>\n  );\n};\n\n// Componente padre para probar\nconst App = () => {\n  const [input, setInput] = useState('pikachu');\n  return (\n    <div style={{ padding: 20 }}>\n      <input value={input} onChange={e => setInput(e.target.value)} />\n      <hr />\n      {/* Pasamos el nombre al visor */}\n      <VisorPokemon nombreBusqueda={input} />\n    </div>\n  );\n};"
+    },
+    {
+      "type": "text",
+      "value": "Tómate tu tiempo. Asegúrate de probar casos de éxito (ej: \"ditto\") y casos de error (ej: un nombre inventado). El manejo del 404 es lo que diferencia a un junior de alguien que entiende HTTP."
+    },
+    {
+      "type": "text",
+      "value": "..."
+    },
+    {
+      "type": "text",
+      "value": "..."
+    },
+    {
+      "type": "text",
+      "value": "### Solución"
+    },
+    {
+      "type": "text",
+      "value": "Analicemos la implementación correcta, prestando atención al flujo de datos y la gestión de excepciones."
+    },
+    {
+      "type": "code",
+      "value": "import { useState, useEffect } from 'react';\n\nconst VisorPokemon = ({ nombreBusqueda }) => {\n  // Estado tripular: Manejamos las 3 situaciones posibles de la UI\n  const [pokemon, setPokemon] = useState(null);\n  const [cargando, setCargando] = useState(true);\n  const [error, setError] = useState(null);\n\n  useEffect(() => {\n    // Evitamos peticiones si no hay nombre\n    if (!nombreBusqueda) return;\n\n    const obtenerDatos = async () => {\n      // 1. RESET: Siempre reiniciamos los estados antes de una nueva petición\n      setCargando(true);\n      setError(null);\n      setPokemon(null); // Limpiamos el anterior por si acaso\n\n      try {\n        const nombreFormateado = nombreBusqueda.toLowerCase();\n        console.log(`Pidiendo datos de: ${nombreFormateado}...`);\n        \n        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${nombreFormateado}`);\n\n        // 2. VERIFICACIÓN HTTP CRÍTICA\n        // fetch no lanza error en 404, así que lo comprobamos manualmente.\n        if (!response.ok) {\n          if (response.status === 404) {\n             throw new Error(`El Pokémon \"${nombreBusqueda}\" no existe.`);\n          } else {\n             throw new Error(`Error del servidor: ${response.status}`);\n          }\n        }\n\n        // 3. PARSEO (Solo llegamos aquí si response.ok es true)\n        const data = await response.json();\n        \n        // 4. ÉXITO: Guardamos datos\n        setPokemon(data);\n\n      } catch (err) {\n        // 5. ERROR: Capturamos errores de red O los errores que lanzamos manualmente arriba\n        console.error('Fallo en la petición:', err.message);\n        setError(err.message);\n      } finally {\n        // 6. LIMPIEZA: Sea éxito o error, ya no estamos cargando\n        setCargando(false);\n      }\n    };\n\n    obtenerDatos();\n    \n    // (Opcional avanzado: Aquí podría ir una función de limpieza para cancelar el fetch)\n\n  }, [nombreBusqueda]); // Dependencia crucial\n\n  // Renderizado Condicional (Early Returns)\n  if (cargando) return <p className=\"loading\">⏳ Buscando en la Pokédex...</p>;\n  \n  if (error) return <p className=\"error\" style={{color: 'red'}}>❌ {error}</p>;\n\n  // Si llegamos aquí, no estamos cargando, no hay error, y tenemos pokemon\n  return (\n    <div className=\"tarjeta-pokemon\" style={{ border: '1px solid #ddd', padding: 20, maxWidth: 300 }}>\n      <h2 style={{ textTransform: 'capitalize' }}>{pokemon.name}</h2>\n      <img \n        src={pokemon.sprites.front_default} \n        alt={pokemon.name} \n        style={{ width: 150, height: 150, imageRendering: 'pixelated' }}\n      />\n      <div>\n        <small>ID: #{pokemon.id}</small>\n        <ul>\n          {pokemon.types.map(t => <li key={t.type.name}>{t.type.name}</li>)}\n        </ul>\n      </div>\n    </div>\n  );\n};"
+    },
+    {
+      "type": "text",
+      "value": "Observa el bloque `try/catch/finally`. Es el patrón estándar de oro para peticiones asíncronas."
+    },
+    {
+      "type": "text",
+      "value": "El uso de `finally` es una buena práctica: nos asegura que, pase lo que pase (éxito o error), el estado `cargando` volverá a `false`, evitando que la interfaz se quede 'colgada' con un spinner eterno."
+    },
+    {
+      "type": "text",
+      "value": "El punto más importante que debes interiorizar es el `if (!response.ok) throw new Error(...)`. Sin esto, tu aplicación no sabe diferenciar entre un \"No encontrado\" y un éxito, y tratará de renderizar datos que no existen."
+    },
+    {
+      "type": "text",
+      "value": "Este patrón es la base de toda comunicación robusta con un backend en React."
+    }
+  ]
+},
+{
   "id": "tema-1-entorno-jsx",
-  "title": "Entorno Profesional con Vite y Sintaxis JSX",
+  "title": "Entorno de desarroollo con Vite y Sintaxis JSX",
   "shortDescription": "Establecimiento de un flujo de trabajo moderno y comprensión profunda de la extensión sintáctica JSX frente a HTML.",
   "keyConcept": "El ecosistema moderno de React prescinde de bundlers lentos en favor de **Vite** y utiliza **JSX** como una abstracción sintáctica sobre `React.createElement`.",
   "language": "React",
@@ -362,7 +582,7 @@ const KNOWLEDGE_BASE: Concept[] = [
   "content": [
     {
       "type": "text",
-      "value": "Iniciamos el desarrollo profesional en React descartando herramientas obsoletas. Durante años, `create-react-app` (CRA) fue el estándar, pero su arquitectura basada en Webpack se ha vuelto lenta y pesada para los estándares actuales. La industria ha migrado hacia **Vite**."
+      "value": "Iniciamos el desarrollo en React descartando herramientas obsoletas. Durante años, `create-react-app` (CRA) fue el estándar, pero su arquitectura basada en Webpack se ha vuelto lenta y pesada para los estándares actuales. La industria ha migrado hacia **Vite**."
     },
     {
       "type": "text",
@@ -370,7 +590,7 @@ const KNOWLEDGE_BASE: Concept[] = [
     },
     {
       "type": "text",
-      "value": "Para inicializar un proyecto profesional, ejecutamos el siguiente comando en la terminal. Esto nos guiará a través de un 'scaffolding' interactivo donde seleccionaremos React y, preferiblemente, JavaScript (o TypeScript si el proyecto lo requiere)."
+      "value": "Para inicializar un proyecto, ejecutamos el siguiente comando en la terminal. Esto nos guiará a través de un 'scaffolding' interactivo donde seleccionaremos React y, preferiblemente, JavaScript (o TypeScript si el proyecto lo requiere)."
     },
     {
       "type": "code",
@@ -502,7 +722,7 @@ const KNOWLEDGE_BASE: Concept[] = [
     },
     {
       "type": "code",
-      "value": "// Sintaxis profesional con desestructuración\nconst Saludo = ({ nombre, rol }) => {\n  return <h3>Hola {nombre}, eres {rol}.</h3>;\n};"
+      "value": "// Sintaxis con desestructuración\nconst Saludo = ({ nombre, rol }) => {\n  return <h3>Hola {nombre}, eres {rol}.</h3>;\n};"
     },
     {
       "type": "text",
@@ -914,7 +1134,7 @@ const KNOWLEDGE_BASE: Concept[] = [
     },
     {
       "type": "text",
-      "value": "### Solución Profesional"
+      "value": "### Solución"
     },
     {
       "type": "text",
@@ -1692,7 +1912,7 @@ const KNOWLEDGE_BASE: Concept[] = [
 },
 {
   "id": "tema-10-react-query-data-fetching",
-  "title": "Gestión Profesional de Datos Asíncronos con TanStack Query",
+  "title": "Gestión de Datos Asíncronos con TanStack Query",
   "shortDescription": "Abandona los useEffects manuales para el fetching de datos y adopta la gestión de estado de servidor con caché inteligente, invalidación y sincronización automática.",
   "keyConcept": "El estado de la interfaz (**Client State**) y el estado del servidor (**Server State**) son fundamentalmente diferentes. **React Query** gestiona el segundo, eliminando la necesidad de `useEffect` para llamadas a APIs y resolviendo problemas complejos de caché.",
   "language": "React",
@@ -2046,7 +2266,7 @@ const KNOWLEDGE_BASE: Concept[] = [
     },
     {
       "type": "text",
-      "value": "### Solución Arquitectónica Profesional"
+      "value": "### Solución"
     },
     {
       "type": "text",
