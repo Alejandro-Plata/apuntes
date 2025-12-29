@@ -248,7 +248,7 @@ const KNOWLEDGE_BASE: Concept[] = [
 },
 {
   "id": "ejercicio-fundamentos-js",
-  "title": "Desafío Práctico: Refactorización del 'Legacy Code'",
+  "title": "Ejercicio Práctico: Refactorización del 'Legacy Code'",
   "shortDescription": "Pon a prueba tus conocimientos transformando un código JavaScript antiguo y propenso a errores en una solución moderna, limpia y robusta.",
   "keyConcept": "La capacidad de **refactorizar** código antiguo aplicando sintaxis moderna (ES6+) es tan importante como escribir código nuevo desde cero.",
   "conceptType": "practica",
@@ -278,7 +278,7 @@ const KNOWLEDGE_BASE: Concept[] = [
     },
     {
       "type": "text",
-      "value": "Este código es difícil de leer y mantener. A continuación, te detallo los **Requisitos del Desafío** para la versión moderna."
+      "value": "Este código es difícil de leer y mantener. A continuación, te detallo los **requisitos de la nueva versión**."
     },
     {
       "type": "text",
@@ -494,7 +494,7 @@ const KNOWLEDGE_BASE: Concept[] = [
     },
     {
       "type": "text",
-      "value": "### Requisitos del Desafío"
+      "value": "### Requisitos"
     },
     {
       "type": "text",
@@ -785,7 +785,7 @@ const KNOWLEDGE_BASE: Concept[] = [
 {
   "id": "ejercicio-tema-1-2-jsx-componentes",
   "title": "Ejercicio Práctico: De HTML Estático a Componentes React Dinámicos",
-  "shortDescription": "Un desafío de refactorización visual donde transformarás maquetación repetitiva en componentes reutilizables utilizando JSX y Props.",
+  "shortDescription": "Un ejercicio de refactorización visual donde transformarás maquetación repetitiva en componentes reutilizables utilizando JSX y Props.",
   "keyConcept": "La transición de **HTML imperativo** a **React declarativo** se basa en identificar patrones visuales repetitivos, abstraerlos en **Componentes** y alimentarlos dinámicamente mediante **Props** y **Listas**.",
   "language": "React",
   "conceptType": "practica",
@@ -1081,7 +1081,7 @@ const KNOWLEDGE_BASE: Concept[] = [
 {
   "id": "ejercicio-tema-3-4-eventos-estado",
   "title": "Ejercicio Práctico: Interactividad y Estado con Hooks",
-  "shortDescription": "Un desafío para transformar una interfaz muerta en un componente reactivo utilizando el manejo de eventos y el hook useState.",
+  "shortDescription": "Un ejercicio para transformar una interfaz muerta en un componente reactivo utilizando el manejo de eventos y el hook useState.",
   "keyConcept": "La interactividad en React nace de la unión de **Eventos** (que capturan la intención del usuario) y **Estado** (que almacena el resultado de esa intención y actualiza la vista).",
   "language": "React",
   "conceptType": "practica",
@@ -1110,7 +1110,7 @@ const KNOWLEDGE_BASE: Concept[] = [
     },
     {
       "type": "text",
-      "value": "### Requisitos del Desafío"
+      "value": "### Requisitos"
     },
     {
       "type": "text",
@@ -1826,7 +1826,7 @@ const KNOWLEDGE_BASE: Concept[] = [
     },
     {
       "type": "text",
-      "value": "El desafío combina dos habilidades críticas: **React Router v6** para movernos entre pantallas y **Custom Hooks** para no repetir la lógica de `fetch` en cada componente."
+      "value": "Este pequeño proyecto combina dos habilidades críticas: **React Router v6** para movernos entre pantallas y **Custom Hooks** para no repetir la lógica de `fetch` en cada componente."
     },
     {
       "type": "text",
@@ -2196,7 +2196,7 @@ const KNOWLEDGE_BASE: Concept[] = [
 },
 {
   "id": "ejercicio-context-zustand",
-  "title": "Desafío Híbrido: Tienda con Tema y Carrito",
+  "title": "Ejercicio práctico: Tienda con Tema y Carrito",
   "shortDescription": "Implementación de una arquitectura profesional que combina Context API para configuraciones globales y Zustand para la gestión de datos transaccionales.",
   "keyConcept": "La arquitectura moderna de React a menudo es **híbrida**: reservamos **Context** para estados estáticos (temas, usuario) y gestores como **Zustand** para estados dinámicos complejos (carrito de compra) para evitar renderizados innecesarios.",
   "language": "React",
@@ -2238,7 +2238,7 @@ const KNOWLEDGE_BASE: Concept[] = [
     },
     {
       "type": "text",
-      "value": "### Requisitos del Desafío"
+      "value": "### Requisitos"
     },
     {
       "type": "text",
@@ -2304,7 +2304,7 @@ const KNOWLEDGE_BASE: Concept[] = [
 },
 {
   "id": "proyecto-practica-cineverse",
-  "title": "Proyecto de práctica: CineVerse",
+  "title": "Ejercicio práctico: CineVerse",
   "shortDescription": "Guía exhaustiva para construir tu primera Single Page Application profesional, integrando enrutamiento, gestión de estado global y consumo de APIs externas.",
   "keyConcept": "El desarrollo de una aplicación React profesional requiere orquestar múltiples piezas móviles: **Routing** para la navegación, **Context** para el estado global y **Custom Hooks** para la lógica de negocio, todo bajo una arquitectura de carpetas escalable.",
   "language": "React",
@@ -2378,7 +2378,7 @@ const KNOWLEDGE_BASE: Concept[] = [
 {
   "id": "proyecto-final-stayspot",
   "title": "Proyecto Integrador: StaySpot - Plataforma de Reservas",
-  "shortDescription": "El desafío definitivo. Construye una plataforma de alquiler vacacional completa que integre autenticación, filtros complejos, formularios multi-paso y testing automatizado.",
+  "shortDescription": "Construye una plataforma de alquiler vacacional completa que integre autenticación, filtros complejos, formularios multi-paso y testing automatizado.",
   "keyConcept": "Este proyecto simula un entorno de producción real donde debes orquestar **autenticación**, **gestión de estados complejos (filtros + carrito)** y **testing** bajo una arquitectura escalable.",
   "language": "React",
   "conceptType": "practica",
